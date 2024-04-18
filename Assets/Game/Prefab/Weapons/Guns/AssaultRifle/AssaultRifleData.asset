@@ -15,8 +15,9 @@ MonoBehaviour:
   Name: Assault Rifle
   Damage: 5
   FireRate: 600
-  CurrentAmmo: 0
+  CurrentAmmo: 30
   MaxAmmo: 30
-  projectile: {fileID: 0}
+  Projectile: {fileID: 0}
+  UsesMagasine: 1
   ReloadTime: 1.5
   Reloading: 0
