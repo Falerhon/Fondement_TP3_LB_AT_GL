@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static PlayerAttack;
 
 public class PlayerWeaponHolder : MonoBehaviour
 {
     [SerializeField] private List<Gun> guns = new List<Gun>();
     [SerializeField] private List<KeyCode> inputs = new List<KeyCode>();
-    [SerializeField] private Gun currentGun;
+    public Gun currentGun;
     
     private Dictionary<KeyCode, Gun> gunInventory = new Dictionary<KeyCode, Gun>();
 
+    public delegate void ChangeWeaponEvent();
+    public static ChangeWeaponEvent onWeaponChange;
 
     private void Start()
     {
@@ -34,7 +38,18 @@ public class PlayerWeaponHolder : MonoBehaviour
 
                 currentGun = gunInventory[key];
                 currentGun.Equip();
+
+                if(onWeaponChange != null)
+                {
+                    onWeaponChange.Invoke();
+                }
+                
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        onWeaponChange = null;
     }
 }

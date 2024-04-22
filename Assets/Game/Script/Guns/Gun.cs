@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static PlayerAttack;
 
 public class Gun : MonoBehaviour
 {
     public GunData gunData;
-    public Transform endGunPosition;
+
+    public delegate void GunReloadDoneEvent();
+    public static GunReloadDoneEvent onReloadDone;
+
     private bool onCooldown = false;
 
     private void Start()
@@ -33,14 +37,9 @@ public class Gun : MonoBehaviour
         if (gunData.CurrentAmmo > 0 && !gunData.Reloading && !onCooldown)
         {
             //Projectile firing
-            GameObject clone;
-            clone=Instantiate(gunData.Projectile,endGunPosition.position,endGunPosition.rotation);
-            Projectile target = clone.GetComponent<Projectile>();
-            target.GiveDirection(endGunPosition.forward);
+            //Instantiate(gunData.projectile);
             gunData.CurrentAmmo--;
             onCooldown = true;
-
-            print("Shooting with gun : " + gunData.Name);
 
             StartCoroutine(Cooldown());
         }
@@ -49,7 +48,6 @@ public class Gun : MonoBehaviour
     private IEnumerator Cooldown()
     {
         yield return new WaitForSeconds(1f / (gunData.FireRate / 60));
-        print("Cooldown over");
         onCooldown = false;
     }
 
@@ -65,7 +63,6 @@ public class Gun : MonoBehaviour
     private IEnumerator ReloadTime()
     {
         yield return new WaitForSeconds(gunData.ReloadTime);
-        print("Reload over");
         if(gunData.CurrentAmmo > 0 && gunData.UsesMagasine)
         {
             gunData.CurrentAmmo = gunData.MaxAmmo + 1;
@@ -74,6 +71,16 @@ public class Gun : MonoBehaviour
             gunData.CurrentAmmo = gunData.MaxAmmo;
         }
         
+        if(onReloadDone != null)
+        {
+            onReloadDone.Invoke();
+        }
+
         gunData.Reloading = false;
+    }
+
+    private void OnDestroy()
+    {
+        onReloadDone = null;
     }
 }

@@ -220,7 +220,7 @@ MonoBehaviour:
   guns:
   - {fileID: 798478324409857476}
   - {fileID: 4380671041641829120}
-  inputs: 1a0100001b010000
+  inputs: 3100000032000000
   currentGun: {fileID: 0}
 --- !u!1 &1121405204566728541
 GameObject:
@@ -234,6 +234,8 @@ GameObject:
   - component: {fileID: 4288300325143132662}
   - component: {fileID: 2620288692999447561}
   - component: {fileID: 3043321466449609542}
+  - component: {fileID: 3330755385647949653}
+  - component: {fileID: 388141881768902617}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Untagged
@@ -304,11 +306,17 @@ MonoBehaviour:
   jumpForce: 25
   jumpCooldown: 0.5
   airMultiplier: 0.4
+  raiseSpeed: 2
+  lowerSpeed: 2
+  flyDrag: 5
+  flySpeed: 14
   playerHeight: 2
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
   jumpKey: 32
+  flyKey: 118
+  lowerKey: 99
 --- !u!114 &3043321466449609542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,6 +331,45 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackInput: 323
   reloadInput: 114
+--- !u!136 &3330755385647949653
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1121405204566728541}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &388141881768902617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1121405204566728541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52bc7ed7ff3659c47b3355b9e6047731, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponHolder: {fileID: 830180505783224038}
+  cameraManager: {fileID: 8655148686432796851}
+  charData: {fileID: 11400000, guid: 13e72998fa63f654383f495745c55c06, type: 2}
+  GameOverUI: {fileID: 0}
 --- !u!1 &4302794225975288058
 GameObject:
   m_ObjectHideFlags: 0

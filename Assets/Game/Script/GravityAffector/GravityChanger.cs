@@ -20,7 +20,6 @@ public class GravityChanger : MonoBehaviour
 		Rigidbody rb = other.GetComponent<Rigidbody>();
 		if (rb != null)
 		{
-			Debug.Log("has rigidBody");
 			rb.AddExplosionForce(strenght, transform.position, radius);
 		}
 	}
