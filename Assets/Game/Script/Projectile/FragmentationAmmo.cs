@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class FragmentationAmmo : Projectile
 {
-    public float explosionDelay;
-	public float delayToDestroySelf; 
-	public float radius;
-	public float explosionStrenght;
-	public GameObject fragmentToSpawn;
-	public int amountOfFragmentToSpawn;
+	[SerializeField] float explosionDelay;
+	[SerializeField] float delayToDestroySelf;
+	[SerializeField] float radius;
+	[SerializeField] float explosionStrenght;
+	[SerializeField] int amountOfFragmentToSpawn;
 
+	public GameObject fragmentToSpawn;
 	//Used to disable movement and physics for explosion
 	SphereCollider myCollider;
 	Rigidbody myRigidbody;

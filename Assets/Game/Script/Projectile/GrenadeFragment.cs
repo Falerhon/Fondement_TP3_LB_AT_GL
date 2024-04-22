@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class GrenadeFragment : MonoBehaviour
 {
-
+	[SerializeField] float baseDamage;
 	private void OnTriggerEnter(Collider other)
 	{
-		//Check if has HP
-		//Send Damage
+		Character character = other.GetComponent<Character>();
+		if(character != null)
+		{
+			character.TakeDamage(baseDamage);
+		}
+		
 	}
 }

@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class NormalAmmo : Projectile
 {
-	public float destructionDelay;
-	public float launchForce;
+	[SerializeField] float destructionDelay;
+	[SerializeField] float launchForce;
+	[SerializeField] float baseDamage;
 	// Start is called before the first frame update
 
 	public override void GiveDirection(Vector3 Direction)
@@ -27,8 +28,11 @@ public class NormalAmmo : Projectile
 	{
 		
 			StopAllCoroutines();
-			//if has HP
-			//Damage em	
+		Character character = collision.gameObject.GetComponent<Character>();
+		if (character != null)
+		{
+			character.TakeDamage(baseDamage);
+		}
 	}
 
 	private void OnCollisionExit(Collision collision)

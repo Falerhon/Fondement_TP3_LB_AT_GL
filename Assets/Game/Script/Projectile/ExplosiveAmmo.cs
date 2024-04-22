@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class ExplosiveAmmo : Projectile
 {
-	public float explosionDelay;
-	public float radius;
-	public float explosionStrenght;
+	[SerializeField] float explosionDelay;
+	[SerializeField] float radius;
+	[SerializeField] float explosionStrenght;
+	[SerializeField] float baseDamage;
 
 	public override void GiveDirection(Vector3 Direction)
 	{
@@ -34,7 +35,11 @@ public class ExplosiveAmmo : Projectile
 
 
 			//Check if can take damage the call it
-
+			Character character = collider.GetComponent<Character>();
+			if (character != null)
+			{
+				character.TakeDamage(baseDamage);
+			}
 
 			Debug.Log("detected");
 			if (collider.gameObject.CompareTag("Destructible"))
