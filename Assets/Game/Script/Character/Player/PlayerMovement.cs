@@ -199,4 +199,9 @@ public class PlayerMovement : MonoBehaviour
         isFlying = false;
         rb.useGravity = true;
     }
+
+    public bool IsGrounded()
+    {
+        return isGrounded;
+    }
 }
