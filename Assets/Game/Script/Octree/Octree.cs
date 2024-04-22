@@ -1,4 +1,4 @@
-using System.Collections;
+#define OCTREE_TrackStats
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +8,7 @@ public interface ISpacialData3D
     Vector3 GetLocation();
     Bounds GetBounds();
     float GetRadius();
+    GameObject GetGameObject();
 }
 
 public class Octree : MonoBehaviour
@@ -15,8 +16,8 @@ public class Octree : MonoBehaviour
 
     class Node
     {
-        Bounds NodeBounds;
-        Node[] Children;
+        public Bounds NodeBounds;
+        public Node[] Children;
         int Depth = -1;
 
         HashSet<ISpacialData3D> Data;
@@ -58,6 +59,9 @@ public class Octree : MonoBehaviour
             Vector3 offset = childSize / 2f;
             int newDepth = Depth + 1;
 
+#if OCTREE_TrackStats
+            Owner.NewNodesCreated(8, newDepth);
+#endif
             Children = new Node[8]
             {
                 //Lower layer
@@ -86,7 +90,9 @@ public class Octree : MonoBehaviour
             foreach(var Child in Children)
             {
                 if (Child.Overlaps(Data3D.GetBounds()))
+                {
                     Child.AddData(Owner, Data3D);
+                }
             }
         }
 
@@ -155,13 +161,17 @@ public class Octree : MonoBehaviour
 
     [field: SerializeField] public int PreferedMaxDataPerNode { get; private set; } = 50;
     [field: SerializeField] public int MinimumNodeSize { get; private set; } = 5;
-
+    
 
     Node RootNode;
-
+   
     public void PrepareTree(Bounds inBounds)
     {
         RootNode = new Node(inBounds);
+#if OCTREE_TrackStats
+        MaxDepth = 0;
+        NbNodes = 1;
+#endif
     }
 
     public void AddData(ISpacialData3D Data3D)
@@ -176,18 +186,65 @@ public class Octree : MonoBehaviour
             AddData(data);
         }
     }
-
-    public void ShowStats()
-    {
-
-    }
-
     public HashSet<ISpacialData3D> FindDataInRange(Vector3 SearchLocation, float SearchRange)
     {
         HashSet<ISpacialData3D> foundData = new();
 
         RootNode.FindDataInRange(SearchLocation, SearchRange, foundData);
 
+#if OCTREE_TrackStats
+        Debug.Log($"Search found {foundData.Count}");
+#endif
         return foundData;
     }
+
+    public void ShowStats()
+    {
+#if OCTREE_TrackStats
+        Debug.Log($"Max Depth : {MaxDepth}");
+        Debug.Log($"Nb Nodes : {NbNodes}");
+#endif
+    }
+
+    List<Node> nodesToPrint = new List<Node>();
+    private void OnDrawGizmos()
+    {
+        if(RootNode != null)
+        {
+            nodesToPrint.Clear();
+            FindNodes(RootNode);
+            foreach (var node in nodesToPrint)
+            {
+                Gizmos.color = Color.yellow;
+                Gizmos.DrawWireCube(node.NodeBounds.center, node.NodeBounds.size);
+            }
+        }
+    }
+
+    void FindNodes(Node node)
+    {
+        // if node is leaf node, print its data    
+        if (node.Children == null)
+        {
+            nodesToPrint.Add(node);
+            return;
+        }
+        else
+        {
+            foreach (var child in node.Children)
+                FindNodes(child);
+        }
+
+    }
+
+#if OCTREE_TrackStats
+    int MaxDepth = -1;
+    int NbNodes = 0;
+
+    public void NewNodesCreated(int NbAdded, int NodeDepth)
+    {
+        NbNodes += NbAdded;
+        MaxDepth = Mathf.Max(NodeDepth, MaxDepth);
+    }
+#endif
 }

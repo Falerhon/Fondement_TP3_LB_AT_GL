@@ -43,23 +43,31 @@ public class OctreeObstacle : MonoBehaviour, ISpacialData3D
         return CachedRadius.Value;
     }
 
+    public GameObject GetGameObject()
+    {
+        return gameObject;
+    }
+
     private void UpdateCachedData()
     {
         CachedPosition = transform.position;
         CachedBounds = Collider.bounds;
-        CachedRadius = Collider.bounds.extents.magnitude;        
+        CachedRadius = Collider.bounds.extents.magnitude;
     }
 
-
-    // Start is called before the first frame update
     void Start()
     {
-        
+        MeshRenderer.material.color = Color.red;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void AddHighlight(Color color)
     {
-        
+        print(this.gameObject.name +" is Changing color to " + color);
+        MeshRenderer.material.color = color;
     }
+
+    public void RemoveHighlight()
+    {
+        MeshRenderer.material.color = Color.red;
+    }    
 }
