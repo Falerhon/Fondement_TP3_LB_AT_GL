@@ -62,7 +62,6 @@ public class OctreeObstacle : MonoBehaviour, ISpacialData3D
 
     public void AddHighlight(Color color)
     {
-        print(this.gameObject.name +" is Changing color to " + color);
         MeshRenderer.material.color = color;
     }
 
