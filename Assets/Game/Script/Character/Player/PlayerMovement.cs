@@ -58,14 +58,16 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f);
-        SpeedControll();
+        
 
         if (!isFlying)
         {
+            SpeedControll();
             moveInput();
         }
         else
         {
+            FlySpeedControll();
             flyInput();
         }
 
@@ -83,8 +85,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-
-        movePlayer();
+        if(!isFlying)
+        {
+            movePlayer();
+        } else
+        {
+            flyPlayer();
+        }
+        
         
     }
 
@@ -151,6 +159,17 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector3 maxVelocity = velocity.normalized * moveSpeed;
             rb.velocity = new Vector3(maxVelocity.x, rb.velocity.y, maxVelocity.z);
+        }
+    }
+
+    private void FlySpeedControll()
+    {
+        Vector3 velocity = rb.velocity;
+
+        if (velocity.magnitude > flySpeed)
+        {
+            Vector3 maxVelocity = velocity.normalized * flySpeed;
+            rb.velocity = maxVelocity;
         }
     }
 

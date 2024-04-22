@@ -28,4 +28,10 @@ public class PlayerAttack : MonoBehaviour
             if(onReload != null) { onReload.Invoke(); }
         }
     }
+
+    private void OnDestroy()
+    {
+        onAttack = null;
+        onReload = null;
+    }
 }
