@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ExplosiveAmmo : Projectile
 {
-	float explosionDelay;
+	public float explosionDelay;
+	public float radius;
+	public float explosionStrenght;
 
 	public override void GiveDirection(Vector3 Direction)
 	{
@@ -22,11 +25,22 @@ public class ExplosiveAmmo : Projectile
 	void Explode()
 	{
 		//Check in radius
-		//if(has tag destroyable) 
-			//Destroy
-		//IF is Character
-		//Give Damage
+		Collider[] colliders = Physics.OverlapSphere(transform.position,radius);
+		foreach (Collider collider in colliders)
+		{
+			Rigidbody rb=collider.GetComponent<Rigidbody>();
+			if (rb != null)
+				rb.AddExplosionForce(explosionStrenght, transform.position, radius);
 
+
+			//Check if can take damage the call it
+
+
+
+			if (collider.gameObject.CompareTag("destructible"))
+				Destroy(collider.gameObject);
+
+		}
 		
 		Destroy(gameObject);
 	}
