@@ -3,14 +3,24 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class NormalAmmo : MonoBehaviour
+public class NormalAmmo : Projectile
 {
-	float destructionDelay;
-
+	public float destructionDelay;
+	public float launchForce;
 	// Start is called before the first frame update
+
+	public override void GiveDirection(Vector3 Direction)
+	{
+		Debug.Log(Direction);
+		Rigidbody rb = GetComponent<Rigidbody>();
+		if (rb != null)
+			rb.AddForce(Direction * launchForce, ForceMode.Impulse);
+	}
+
 	void Start()
 	{
 		StartCoroutine(DestructionDelay());
+		
 	}
 
 	private void OnCollisionEnter(Collision collision)

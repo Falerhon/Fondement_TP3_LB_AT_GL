@@ -6,7 +6,7 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
     public GunData gunData;
-
+    public Transform endGunPosition;
     private bool onCooldown = false;
 
     private void Start()
@@ -33,7 +33,10 @@ public class Gun : MonoBehaviour
         if (gunData.CurrentAmmo > 0 && !gunData.Reloading && !onCooldown)
         {
             //Projectile firing
-            //Instantiate(gunData.projectile);
+            GameObject clone;
+            clone=Instantiate(gunData.Projectile,endGunPosition.position,endGunPosition.rotation);
+            Projectile target = clone.GetComponent<Projectile>();
+            target.GiveDirection(endGunPosition.forward);
             gunData.CurrentAmmo--;
             onCooldown = true;
 
