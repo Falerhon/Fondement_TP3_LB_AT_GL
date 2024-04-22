@@ -24,6 +24,14 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isJumpReady = true;
 
+    [Header("Fly")]
+    private bool isFlying = false;
+    [SerializeField] private float raiseSpeed;
+    [SerializeField] private float lowerSpeed;
+    [SerializeField] private float flyDrag;
+    [SerializeField] private float flySpeed;
+
+
 
     [Header("Ground Check")]
     public float playerHeight;
@@ -32,6 +40,8 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Keybind")]
     public KeyCode jumpKey = KeyCode.Space;
+    public KeyCode flyKey = KeyCode.V;
+    public KeyCode lowerKey = KeyCode.C;
 
 
 
@@ -48,13 +58,24 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f);
-        moveInput();
         SpeedControll();
 
-        if (isGrounded )
+        if (!isFlying)
+        {
+            moveInput();
+        }
+        else
+        {
+            flyInput();
+        }
+
+        if (isGrounded && !isFlying)
         {
             rb.drag = groundDrag;
-        } else
+        } else if (isFlying)
+        {
+            rb.drag = flyDrag;
+        }else
         {
             rb.drag = 0;
         }
@@ -62,7 +83,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+
         movePlayer();
+        
     }
 
     private void moveInput()
@@ -75,6 +98,32 @@ public class PlayerMovement : MonoBehaviour
             Jump();
             Invoke(nameof(ResetJump), jumpCooldown);
         }
+
+        if (Input.GetKeyDown(flyKey))
+        {
+            EnableFly();
+        }
+    }
+
+    private void flyInput()
+    {
+        horizontalInput = Input.GetAxisRaw("Horizontal");
+        verticalInput = Input.GetAxisRaw("Vertical");
+
+        if (Input.GetKey(jumpKey))
+        {
+            rb.AddForce(Vector3.up * raiseSpeed * 10f, ForceMode.Force);
+        }
+
+        if(Input.GetKey(lowerKey)) 
+        {
+            rb.AddForce(Vector3.down * lowerSpeed * 10f, ForceMode.Force);
+        }
+
+        if (Input.GetKeyDown(flyKey))
+        {
+            DisableFly();
+        }
     }
 
     private void movePlayer()
@@ -85,6 +134,13 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(moveDir.normalized * moveSpeed * 10f, ForceMode.Force);
         else
             rb.AddForce(moveDir.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
+    }
+
+    private void flyPlayer()
+    {
+        moveDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
+
+        rb.AddForce(moveDir.normalized * flySpeed * 10f, ForceMode.Force);
     }
 
     private void SpeedControll()
@@ -110,5 +166,18 @@ public class PlayerMovement : MonoBehaviour
     private void ResetJump()
     {
         isJumpReady = true;
+    }
+
+    private void EnableFly()
+    {
+        rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+        isFlying = true;
+        rb.useGravity = false;
+    }
+
+    private void DisableFly()
+    {
+        isFlying = false;
+        rb.useGravity = true;
     }
 }

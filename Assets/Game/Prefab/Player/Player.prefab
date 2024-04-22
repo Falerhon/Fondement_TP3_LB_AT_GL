@@ -304,11 +304,17 @@ MonoBehaviour:
   jumpForce: 25
   jumpCooldown: 0.5
   airMultiplier: 0.4
+  raiseSpeed: 4
+  lowerSpeed: 4
+  flyDrag: 3
+  flySpeed: 14
   playerHeight: 2
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
   jumpKey: 32
+  flyKey: 118
+  lowerKey: 99
 --- !u!114 &3043321466449609542
 MonoBehaviour:
   m_ObjectHideFlags: 0
