@@ -36,8 +36,8 @@ public class ExplosiveAmmo : Projectile
 			//Check if can take damage the call it
 
 
-
-			if (collider.gameObject.CompareTag("destructible"))
+			Debug.Log("detected");
+			if (collider.gameObject.CompareTag("Destructible"))
 				Destroy(collider.gameObject);
 
 		}

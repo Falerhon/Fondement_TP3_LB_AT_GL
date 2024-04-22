@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &9057288242645409443
+--- !u!1 &1508644186598306761
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,49 +8,49 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 636797958566409275}
-  - component: {fileID: 6941702315690999125}
-  - component: {fileID: 957616696270070897}
-  - component: {fileID: 808488215492491672}
-  - component: {fileID: 5010502784228745168}
-  - component: {fileID: 136050020088883544}
+  - component: {fileID: 3083896023702284584}
+  - component: {fileID: 4880093309956036743}
+  - component: {fileID: 4120566311616087518}
+  - component: {fileID: 215951737133851277}
+  - component: {fileID: 3754801255921596401}
+  - component: {fileID: 7263674220834083017}
   m_Layer: 0
-  m_Name: Grenade
+  m_Name: FragGrenade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &636797958566409275
+--- !u!4 &3083896023702284584
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9057288242645409443}
+  m_GameObject: {fileID: 1508644186598306761}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1.751}
-  m_LocalScale: {x: 0.2487, y: 0.2487, z: 0.2487}
+  m_LocalPosition: {x: 0.11203, y: -0.2633224, z: -1.8345947}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &6941702315690999125
+--- !u!33 &4880093309956036743
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9057288242645409443}
+  m_GameObject: {fileID: 1508644186598306761}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &957616696270070897
+--- !u!23 &4120566311616087518
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9057288242645409443}
+  m_GameObject: {fileID: 1508644186598306761}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -86,13 +86,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &808488215492491672
+--- !u!135 &215951737133851277
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9057288242645409443}
+  m_GameObject: {fileID: 1508644186598306761}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -107,13 +107,13 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &5010502784228745168
+--- !u!54 &3754801255921596401
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9057288242645409443}
+  m_GameObject: {fileID: 1508644186598306761}
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
@@ -134,18 +134,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &136050020088883544
+--- !u!114 &7263674220834083017
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9057288242645409443}
+  m_GameObject: {fileID: 1508644186598306761}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 625d2e96b037d8b45972a4b44cb4a885, type: 3}
+  m_Script: {fileID: 11500000, guid: 35a5c49e91db697469ea2cc18d901b60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionDelay: 2
-  radius: 200
-  explosionStrenght: 20
+  explosionDelay: 3
+  delayToDestroySelf: 3
+  radius: 2
+  explosionStrenght: 2000
+  fragmentToSpawn: {fileID: 4361791168053957546, guid: 0926a0f553989ae43873874511777917, type: 3}
+  amountOfFragmentToSpawn: 10
