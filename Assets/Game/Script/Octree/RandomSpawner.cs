@@ -13,21 +13,21 @@ public class RandomSpawner : MonoBehaviour
     public UnityEvent<Bounds> OnBoundsCalculated = new UnityEvent<Bounds>();
 
 
-    private Collider collider;
+    private Collider spawnerCollider;
 
     // Start is called before the first frame update
     void Start()
     {
-        collider = SpawnZone.GetComponent<Collider>();
-        if (collider == null) print("BOX COLLIDER NULL");
+        spawnerCollider = SpawnZone.GetComponent<Collider>();
+        if (spawnerCollider == null) print("BOX COLLIDER NULL");
 
-        OnBoundsCalculated.Invoke(collider.bounds);
+        OnBoundsCalculated.Invoke(spawnerCollider.bounds);
         SpawnPrefab();
     }
 
     private void SpawnPrefab()
     {
-        Vector3 boxSize = collider.bounds.extents;
+        Vector3 boxSize = spawnerCollider.bounds.extents;
         for (int i = 0; i < NbToSpawn; i++)
         {
             Vector3 randomSpawnPos = new Vector3(

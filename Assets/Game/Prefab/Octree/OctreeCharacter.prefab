@@ -121,6 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Octree: {fileID: 0}
   SearchRange: 2
+  goCollider: {fileID: 7946544554738670026}
 --- !u!54 &8918575485983911581
 Rigidbody:
   m_ObjectHideFlags: 0
