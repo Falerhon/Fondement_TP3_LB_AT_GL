@@ -52,4 +52,9 @@ public class SettingMenu : MonoBehaviour
     {
         Screen.fullScreen = IsFullScreen;
     }
+
+    public void Return()
+    {
+        gameObject.SetActive(false);
+    }
 }
