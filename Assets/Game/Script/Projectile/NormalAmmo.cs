@@ -12,7 +12,6 @@ public class NormalAmmo : Projectile
 
 	public override void GiveDirection(Vector3 Direction)
 	{
-		Debug.Log(Direction);
 		Rigidbody rb = GetComponent<Rigidbody>();
 		if (rb != null)
 			rb.AddForce(Direction * launchForce, ForceMode.Impulse);
@@ -27,18 +26,18 @@ public class NormalAmmo : Projectile
 	private void OnCollisionEnter(Collision collision)
 	{
 		
-			StopAllCoroutines();
+		StopAllCoroutines();
 		Character character = collision.gameObject.GetComponent<Character>();
 		if (character != null)
 		{
 			character.TakeDamage(baseDamage);
 		}
-	}
 
-	private void OnCollisionExit(Collision collision)
-	{
-		Destroy(gameObject);
-	}
+        if (collision.gameObject.CompareTag("Destructible"))
+            Destroy(collision.gameObject);
+
+        Destroy(gameObject);
+    }
 
 	IEnumerator DestructionDelay()
 	{

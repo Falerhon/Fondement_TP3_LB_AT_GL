@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 1508644186598306761}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.11203, y: -0.2633224, z: -1.8345947}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: c50ad8584e28eb344933d72b2c1a1cd4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -150,5 +150,9 @@ MonoBehaviour:
   delayToDestroySelf: 3
   radius: 2
   explosionStrenght: 2000
-  fragmentToSpawn: {fileID: 4361791168053957546, guid: 0926a0f553989ae43873874511777917, type: 3}
   amountOfFragmentToSpawn: 10
+  launchForce: 20
+  fragmentToSpawn: {fileID: 4361791168053957546, guid: 0926a0f553989ae43873874511777917, type: 3}
+  layermask:
+    serializedVersion: 2
+    m_Bits: 3

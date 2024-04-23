@@ -13,5 +13,9 @@ public class GrenadeFragment : MonoBehaviour
 			character.TakeDamage(baseDamage);
 		}
 		
+		if(other.gameObject.CompareTag("Destructible"))
+		{
+			Destroy(other.gameObject);
+		}
 	}
 }

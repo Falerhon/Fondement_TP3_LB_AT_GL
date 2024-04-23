@@ -10,12 +10,14 @@ public class Gun : MonoBehaviour
 
     public delegate void GunReloadDoneEvent();
     public static GunReloadDoneEvent onReloadDone;
+    [SerializeField] private Transform projectileSpawnPoint;
 
     private bool onCooldown = false;
 
     private void Start()
     {
         gunData.CurrentAmmo = gunData.MaxAmmo;
+        gunData.Reloading = false;
     }
 
     public void Equip()
@@ -37,7 +39,10 @@ public class Gun : MonoBehaviour
         if (gunData.CurrentAmmo > 0 && !gunData.Reloading && !onCooldown)
         {
             //Projectile firing
-            //Instantiate(gunData.projectile);
+            GameObject projectile = Instantiate(gunData.Projectile, projectileSpawnPoint.position, projectileSpawnPoint.rotation);
+
+            projectile.GetComponent<Projectile>().GiveDirection(projectileSpawnPoint.forward);
+
             gunData.CurrentAmmo--;
             onCooldown = true;
 
