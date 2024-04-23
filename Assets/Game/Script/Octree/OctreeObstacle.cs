@@ -48,7 +48,7 @@ public class OctreeObstacle : MonoBehaviour, ISpacialData3D
         return gameObject;
     }
 
-    private void UpdateCachedData()
+    public void UpdateCachedData()
     {
         CachedPosition = transform.position;
         CachedBounds = Collider.bounds;
@@ -58,6 +58,7 @@ public class OctreeObstacle : MonoBehaviour, ISpacialData3D
     void Start()
     {
         MeshRenderer.material.color = Color.red;
+        GetComponent<Rigidbody>().AddForce(Vector3.one * 2);
     }
 
     public void AddHighlight(Color color)

@@ -10,6 +10,7 @@ public class RandomSpawner : MonoBehaviour
     [SerializeField] private GameObject SpawnZone;
 
     public UnityEvent<GameObject> OnItemSpawned = new UnityEvent<GameObject>();
+    public UnityEvent OnAllItemSpawned = new UnityEvent();
     public UnityEvent<Bounds> OnBoundsCalculated = new UnityEvent<Bounds>();
 
 
@@ -44,5 +45,6 @@ public class RandomSpawner : MonoBehaviour
 
             OnItemSpawned.Invoke(go);
         }
+        OnAllItemSpawned.Invoke();
     }
 }

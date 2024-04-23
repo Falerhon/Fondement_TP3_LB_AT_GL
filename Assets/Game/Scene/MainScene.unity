@@ -1056,13 +1056,45 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6161718540122821461, guid: ec5f25b5f39af324c966659e9cadb412, type: 3}
+      propertyPath: NbToSpawn
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 6161718540122821461, guid: ec5f25b5f39af324c966659e9cadb412, type: 3}
+      propertyPath: OnAllItemSpawned.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6161718540122821461, guid: ec5f25b5f39af324c966659e9cadb412, type: 3}
       propertyPath: OnItemSpawned.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1606537324}
+    - target: {fileID: 6161718540122821461, guid: ec5f25b5f39af324c966659e9cadb412, type: 3}
+      propertyPath: OnAllItemSpawned.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6161718540122821461, guid: ec5f25b5f39af324c966659e9cadb412, type: 3}
+      propertyPath: OnAllItemSpawned.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1606537324}
     - target: {fileID: 6161718540122821461, guid: ec5f25b5f39af324c966659e9cadb412, type: 3}
       propertyPath: OnBoundsCalculated.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1606537324}
+    - target: {fileID: 6161718540122821461, guid: ec5f25b5f39af324c966659e9cadb412, type: 3}
+      propertyPath: OnAllItemSpawned.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6161718540122821461, guid: ec5f25b5f39af324c966659e9cadb412, type: 3}
+      propertyPath: OnAllItemSpawned.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnAllItemSpawned
+      objectReference: {fileID: 0}
+    - target: {fileID: 6161718540122821461, guid: ec5f25b5f39af324c966659e9cadb412, type: 3}
+      propertyPath: OnAllItemSpawned.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: OctreeController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6161718540122821461, guid: ec5f25b5f39af324c966659e9cadb412, type: 3}
+      propertyPath: OnAllItemSpawned.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2397,6 +2429,7 @@ MonoBehaviour:
   SearchRange: 2
   goCollider: {fileID: 221522247}
   particle: {fileID: 5437804620793876948, guid: 77cefeaf05ae0b041a5ffc6e4fca5732, type: 3}
+  Collider: {fileID: 221522247}
 --- !u!135 &221522247
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -21423,6 +21456,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <PreferedMaxDataPerNode>k__BackingField: 10
   <MinimumNodeSize>k__BackingField: 1
+  isOctreeReady: 0
 --- !u!4 &1606537323
 Transform:
   m_ObjectHideFlags: 0

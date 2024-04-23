@@ -18,4 +18,9 @@ public class OctreeController : MonoBehaviour
             Octree.AddData(obstacle);
         Octree.ShowStats();
     }
+
+    public void OnAllItemSpawned()
+    {
+        Octree.isOctreeReady = true;
+    }
 }
