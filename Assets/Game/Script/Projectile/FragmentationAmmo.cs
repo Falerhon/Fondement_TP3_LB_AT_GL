@@ -42,8 +42,8 @@ public class FragmentationAmmo : Projectile
 	private void OnCollisionEnter(Collision collision)
 	{
 
-	//	StopAllCoroutines();
-		//Explode();
+		StopAllCoroutines();
+		Explode();
 	}
 
 	void Explode()
