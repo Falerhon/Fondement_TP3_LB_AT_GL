@@ -17,6 +17,8 @@ public class AcidArea : MonoBehaviour
 		{
 			elapsedTime = elapsedTime - 0.3f;
 			Character character = other.gameObject.GetComponent<Character>();
+			AIController ai = other.gameObject.GetComponent<AIController>();
+
 			if (character != null)
 			{
 				float damageMultiplier = 1; //+1 si grounded
@@ -25,6 +27,11 @@ public class AcidArea : MonoBehaviour
 					damageMultiplier++;
 
 				character.TakeDamage(baseDamage * damageMultiplier);
+			}
+			else if(ai != null)
+            {
+				float damageMultiplier = 0.5f;
+				ai.TakeDamage(baseDamage * damageMultiplier);
 			}
 		}
 	}

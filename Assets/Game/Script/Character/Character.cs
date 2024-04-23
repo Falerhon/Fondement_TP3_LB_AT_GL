@@ -42,7 +42,7 @@ public class Character : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        float totalDamage = damage - charData.defence;
+        float totalDamage = damage - charData.defense;
         if (totalDamage > 0) 
         {
             charData.currentHealth -= totalDamage;

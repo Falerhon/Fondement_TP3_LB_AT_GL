@@ -9,6 +9,6 @@ public class CharacterData : ScriptableObject
     [Header("Health")]
     public float currentHealth;
     public float maxHealth;
-    [Header("Defence")]
-    public float defence;
+    [Header("Defense")]
+    public float defense;
 }
