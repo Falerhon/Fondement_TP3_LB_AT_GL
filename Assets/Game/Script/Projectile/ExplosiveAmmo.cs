@@ -9,12 +9,13 @@ public class ExplosiveAmmo : Projectile
 	[SerializeField] float radius;
 	[SerializeField] float explosionStrenght;
 	[SerializeField] float baseDamage;
+	[SerializeField] float launchForce;
 
-	public override void GiveDirection(Vector3 Direction)
+    public override void GiveDirection(Vector3 Direction)
 	{
 		Rigidbody rb = GetComponent<Rigidbody>();
 		if (rb != null)
-			rb.AddForce(Vector3.forward * 60, ForceMode.Acceleration);
+			rb.AddForce(Direction * launchForce, ForceMode.Impulse);
 	}
 
 	// Start is called before the first frame update

@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 1520807958285032967}
   - component: {fileID: 4905432708182909866}
   - component: {fileID: 1944731167722728783}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GravityInfluence
-  m_TagString: Untagged
+  m_TagString: Physics
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -80,7 +80,7 @@ GameObject:
   - component: {fileID: 2990024267062197781}
   - component: {fileID: 885566872598792694}
   - component: {fileID: 3324030276730763947}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}

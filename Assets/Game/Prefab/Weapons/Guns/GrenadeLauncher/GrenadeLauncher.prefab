@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunData: {fileID: 11400000, guid: 71647b88199c05844875c1d559140cae, type: 2}
-  endGunPosition: {fileID: 5915902855042774431}
+  projectileSpawnPoint: {fileID: 5915902855042774431}
 --- !u!1 &7679319267617964012
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,7 +124,7 @@ Transform:
   m_GameObject: {fileID: 7679319267617964012}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.423, y: 0.053, z: 0}
+  m_LocalPosition: {x: 0.471, y: 0.053, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

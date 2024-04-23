@@ -191,10 +191,6 @@ public class Octree : MonoBehaviour
         HashSet<ISpacialData3D> foundData = new();
 
         RootNode.FindDataInRange(SearchLocation, SearchRange, foundData);
-
-#if OCTREE_TrackStats
-        Debug.Log($"Search found {foundData.Count}");
-#endif
         return foundData;
     }
 

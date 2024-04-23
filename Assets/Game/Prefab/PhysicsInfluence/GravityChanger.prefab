@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 8555242351809623044}
   - component: {fileID: 7186945612188729716}
   - component: {fileID: 7930017994755346888}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GravityChanger
-  m_TagString: Untagged
+  m_TagString: Physics
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

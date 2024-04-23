@@ -10,18 +10,22 @@ public class FragmentationAmmo : Projectile
 	[SerializeField] float explosionStrenght;
 	[SerializeField] int amountOfFragmentToSpawn;
 
-	public GameObject fragmentToSpawn;
+    [SerializeField] float launchForce;
+
+    public GameObject fragmentToSpawn;
 	//Used to disable movement and physics for explosion
 	SphereCollider myCollider;
 	Rigidbody myRigidbody;
 	MeshRenderer myMesh;
 	GameObject[] fragments;
 
-	public override void GiveDirection(Vector3 Direction)
+    [SerializeField] private LayerMask layermask;
+
+    public override void GiveDirection(Vector3 Direction)
 	{
 		Rigidbody rb = GetComponent<Rigidbody>();
 		if (rb != null)
-			rb.AddForce(Vector3.forward * 60, ForceMode.Acceleration);
+			rb.AddForce(Direction * launchForce, ForceMode.Impulse);
 	}
 
 	private void Awake()
@@ -66,16 +70,18 @@ public class FragmentationAmmo : Projectile
 			myMesh.enabled = false;
 		}
 
+		
+
 		for (int i = 0; i < amountOfFragmentToSpawn; i++)
 		{
-			bool valid = false;
-			while (!valid)
+			//We only check 10 times so we don't infinite loop
+			for (int j = 0; j < 10; j++)
 			{
 				Vector3 spawnPos = transform.position + Random.insideUnitSphere * myCollider.radius;
-				if (!Physics.CheckBox(spawnPos, new Vector3(0.05f, 0.05f, 0.05f)))
+				if (!Physics.CheckBox(spawnPos, new Vector3(0.05f, 0.05f, 0.05f), Quaternion.identity, layermask))
 				{
 					fragments[i] = Instantiate(fragmentToSpawn, spawnPos, Random.rotation, transform);
-					valid = true;
+					break;
 				}
 			}
 		}
