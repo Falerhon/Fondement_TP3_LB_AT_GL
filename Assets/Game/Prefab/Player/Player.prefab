@@ -371,6 +371,9 @@ MonoBehaviour:
   weaponHolder: {fileID: 830180505783224038}
   cameraManager: {fileID: 8655148686432796851}
   charData: {fileID: 11400000, guid: 13e72998fa63f654383f495745c55c06, type: 2}
+  healKey: 101
+  healAmount: 25
+  healCooldown: 5
   GameOverUI: {fileID: 0}
 --- !u!1 &4302794225975288058
 GameObject:

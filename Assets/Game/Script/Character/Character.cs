@@ -17,6 +17,12 @@ public class Character : MonoBehaviour
     public delegate void CharacterDied();
     public static CharacterDied onCharacterDied;
 
+    [Header("Character heal special")]
+    [SerializeField] private KeyCode healKey;
+    [SerializeField] private float healAmount;
+    [SerializeField] private float healCooldown;
+    private bool canHeal = true;
+
     [Header("Character death")]
     [SerializeField] private GameObject GameOverUI;
 
@@ -29,9 +35,14 @@ public class Character : MonoBehaviour
     //TODO : Remove this, it's a debug
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.J))
+        if(Input.GetKeyDown(healKey))
         {
-            Heal(10);
+            if(canHeal)
+            {
+                Heal(healAmount);
+                canHeal = false;
+                StartCoroutine(Healcooldown());
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.K))
@@ -97,6 +108,12 @@ public class Character : MonoBehaviour
         GameOverUI.SetActive(true);
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
+    }
+
+    IEnumerator Healcooldown()
+    {
+        yield return new WaitForSeconds(healCooldown);
+        canHeal = true;
     }
 
     private void OnDestroy()
