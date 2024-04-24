@@ -183,15 +183,6 @@ public class Octree : MonoBehaviour
                     if (Child.Overlaps(SearchBounds))
                         Child.FindDataInBox(SearchBounds, OutFoundData);
             }
-
-            //If we're on the root node, filter out data not within the search bounds
-            if (Depth == 0)
-            {
-                OutFoundData.RemoveWhere(data =>
-                {
-                    return !SearchBounds.Intersects(data.GetBounds());
-                });
-            }
         }
 
         public void FindDataInRange(Vector3 SearchLocation, float SearchRange, HashSet<ISpacialData3D> OutFoundData)
