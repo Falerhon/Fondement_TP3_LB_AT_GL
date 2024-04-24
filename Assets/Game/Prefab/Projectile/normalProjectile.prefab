@@ -121,7 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destructionDelay: 6
   launchForce: 50
-  baseDamage: 0
+  baseDamage: 10
 --- !u!54 &586382296046153160
 Rigidbody:
   m_ObjectHideFlags: 0
