@@ -2429,7 +2429,6 @@ MonoBehaviour:
   SearchRange: 2
   goCollider: {fileID: 221522247}
   particle: {fileID: 5437804620793876948, guid: 77cefeaf05ae0b041a5ffc6e4fca5732, type: 3}
-  Collider: {fileID: 221522247}
 --- !u!135 &221522247
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -11493,7 +11492,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 479d08d66015668448178bca3a4e0990, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -21456,7 +21455,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <PreferedMaxDataPerNode>k__BackingField: 10
   <MinimumNodeSize>k__BackingField: 1
-  isOctreeReady: 0
 --- !u!4 &1606537323
 Transform:
   m_ObjectHideFlags: 0
@@ -26892,6 +26890,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7627285089967971434, guid: 47e7e3394904a4e4fac1d7dca617bafc, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d5e9c556a16767b4482f861056353032, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
